@@ -1,9 +1,8 @@
-"use server";
-
 import { cookies } from "next/headers";
 import { AUTH_COOKIE } from "./constants";
 import { Client, Account } from "node-appwrite";
 
+// This is not a server action
 export const getCurrent = async () => {
   try {
     const client = new Client()
