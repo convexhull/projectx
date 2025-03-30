@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils";
 import { Project } from "../types";
 import { useUpdateProject } from "../api/use-update-project";
 import { useConfirm } from "@/hooks/use-confirm";
+import { useDeleteProject } from "../api/use-delete-project";
 
 type EditProjectFormProps = {
   onCancel?: () => void;
@@ -36,17 +37,16 @@ export const EditProjectForm = ({
 }: EditProjectFormProps) => {
   const router = useRouter();
   const { mutate, isPending } = useUpdateProject();
-  // const { mutate: deleteWorkspace, isPending: isDeletingWorkspace } =
-  //   useDeleteWorkspace();
+  const { mutate: deleteProject, isPending: isDeletingProject } =
+    useDeleteProject();
 
   const [DeleteDialog, confirmDelete] = useConfirm(
-    "Delete Workspace",
+    "Delete Project",
     "This action cannot be undone",
     "destructive"
   );
 
   const inputRef = useRef<HTMLInputElement>(null);
-
   const form = useForm<z.infer<typeof updateProjectSchema>>({
     resolver: zodResolver(updateProjectSchema),
     defaultValues: {
@@ -59,16 +59,16 @@ export const EditProjectForm = ({
     const ok = await confirmDelete();
     if (!ok) return;
 
-    // deleteWorkspace(
-    //   {
-    //     param: { workspaceId: initialValues.$id },
-    //   },
-    //   {
-    //     onSuccess: () => {
-    //       router.push("/");
-    //     },
-    //   }
-    // );
+    deleteProject(
+      {
+        param: { projectId: initialValues.$id },
+      },
+      {
+        onSuccess: () => {
+          router.push(`/workspaces/${initialValues.workspaceId}`);
+        },
+      }
+    );
   };
 
   const onSubmit = (values: z.infer<typeof updateProjectSchema>) => {
@@ -245,7 +245,7 @@ export const EditProjectForm = ({
               size="sm"
               variant="destructive"
               type="button"
-              disabled={isPending}
+              disabled={isPending || isDeletingProject}
               className="mt-6 w-fit ml-auto"
               onClick={handleDelete}
             >
