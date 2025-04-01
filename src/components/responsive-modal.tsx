@@ -1,6 +1,6 @@
 import { useMedia } from "react-use";
 import { Dialog, DialogContent } from "./ui/dialog";
-import { Drawer, DrawerContent } from "./ui/drawer";
+import { Drawer, DrawerContent, DrawerTitle } from "./ui/drawer";
 
 type ResponsiveModalProps = {
   children: React.ReactNode;
@@ -25,6 +25,7 @@ export const ResponsiveModal = ({
   }
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerTitle className="sr-only"></DrawerTitle>
       <DrawerContent>
         <div className="overflow-y-auto hide-scrollbar max-h-[85vh]">
           {children}
