@@ -1,0 +1,12 @@
+.rbc-month-row {
+  @apply min-h-[180px];
+}
+
+.rbc-header + .rbc-header {
+  @apply border-l-0;
+}
+
+.rbs-button-link {
+}
+
+/* TODO: make text-sm work here; */
