@@ -7,6 +7,7 @@ interface GetProjectProps {
   projectId: string;
 }
 
+// TODO: Unused as now we use client.tsx data fetching via react-query vs. (server side fetching + router.refresh() )
 export const getProject = async ({ projectId }: GetProjectProps) => {
   const { account, databases } = await createSessionClient();
   const user = await account.get();
