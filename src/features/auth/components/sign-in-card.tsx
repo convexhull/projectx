@@ -9,6 +9,7 @@ import { DottedSeparator } from "@/components/dotted-separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { signUpWithGithub, signUpWithGoogle } from "@/lib/oauth";
 import {
   Form,
   FormControl,
@@ -92,6 +93,7 @@ export const SignInCard = () => {
       </div>
       <CardContent className="p-7 flex flex-col gap-y-4">
         <Button
+          onClick={signUpWithGoogle}
           disabled={isPending}
           variant="secondary"
           size="lg"
@@ -105,6 +107,7 @@ export const SignInCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
+          onClick={signUpWithGithub}
         >
           <FaGithub className="mr-2 size-5" />
           Login with Github
