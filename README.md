@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProjectX - A Full-stack Next.js App
 
-## Getting Started
+> A modern, full-stack web application built with **Next.js App Router**, **React Query**, **Express**, and **MongoDB** – designed with performance, scalability, and developer experience in mind.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+An AI-driven full-stack SaasS for project management built using Next.js, Typescript, React.js, ShadCN, Node.js, enabling efficient issue tracking, task assignment, and real-time status updates with a user-friendly interface
+
+This project was built to showcase architecture choices, cutting-edge full-stack development using modern generative AI models. It uses frontier LLM models for priority assessment and workflow optimization by analyzing task urgency and importance, providing intelligent recommendations for prioritization
+
+## 🔧 Tech Stack
+
+**Frontend 🖥️**
+
+- [Next.js 15](https://nextjs.org/docs) (App Router, SSR, Server Actions)
+- React 19
+- React Query (TanStack Query)
+- TailwindCSS
+- TypeScript
+- Shadcn UI / Radix UI
+
+**Backend 🛠️**
+
+- Node.js + Hono.js
+- Appwrite for DB and auth
+- REST APIs using Next.js's full-stack capabilities
+- OAuth
+
+## 🧠 Key Features
+
+- ⚙️ Full authentication flow with email/password and OAuth login using Gmail and Github
+- 🧠 Server-side session fetching via `cookies()` API (Next.js)
+- 🌐 Clean API separation using Hono.js for creating Express.js like modular api endpoints
+- 📦 Responsive UI with reusable components
+- 🚨 Global error boundary and alert system
+- 🔄 Optimistic UI & error handling via React Query
+- 🔍 Accessible, semantic HTML with consistent design system
+
+## 📁 Project Structure
+
+```
+src/app/
+    web/                # Next.js frontend
+    server/             # Express backend
+    api/[[..route]]/    # Catch-all route handler, Hono main app
+
+src/features/**/
+    api/                # Feature level queries/mutations
+    server/             # Feature specific backend route handlers using Hono.js sub-apps
+    components/         # Feature specific components
+    hooks/              # Feature specific custom react hooks
+
+src/
+    config.ts         # Loading environment variables in the code
+    hooks/            # App level react custom hooks
+    lib/              # Utils and other library specific code
+
+src/components/
+    ui/               # ShadCN generated UI components
+    *.tsx             # App level components
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧪 Running Locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Clone the repo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/YOUR_USERNAME/projectx.git
+cd projectx
+```
 
-## Learn More
+### 2. Set up environment variables
 
-To learn more about Next.js, take a look at the following resources:
+Create `.env.local` in the root of the project and add following env vars
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Parameter                               | Description                                       |
+| :-------------------------------------- | :------------------------------------------------ |
+| `NEXT_PUBLIC_APP_URL`                   | **Required**. Needed for making backend api calls |
+| `NEXT_PUBLIC_APPWRITE_ENDPOINT`         | **Required**. Appwrite api endpoint               |
+| `NEXT_PUBLIC_APPWRITE_PROJECT`          | **Required**. Appwrite project id                 |
+| `NEXT_PUBLIC_APPWRITE_DATABASE_ID`      | **Required**. Database id                         |
+| `NEXT_PUBLIC_APPWRITE_WORKSPACES_ID`    | **Required**. Workspaces collection id            |
+| `NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID` | **Required**. Images storage bucket id            |
+| `NEXT_PUBLIC_APPWRITE_MEMBERS_ID`       | **Required**. Members collection id               |
+| `NEXT_PUBLIC_APPWRITE_PROJECTS_ID`      | **Required**. Projects collection id              |
+| `NEXT_PUBLIC_APPWRITE_TASKS_ID`         | **Required**. Tasks collection id                 |
+| `NEXT_APPWRITE_KEY`                     | **Required**. Your Appwrite API key               |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Install packages
 
-## Deploy on Vercel
+```
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You might face dependency issues while installing packages because ShadCN is not fully compatible with React 19 (the version used in this app). But we don't use any such incompatible components from ShadCN. So you can safely use the following command to install packages.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+npm install --legacy-peer-deps
+```
+
+### 4. Start the app
+
+```bash
+npm run dev # Start app in dev mode
+```
+
+OR
+
+```bash
+npm run build # Build app for production
+npm run start # Start app in production mode
+```
+
+App runs at: [http://localhost:3000](http://localhost:3000)
+
+## 📦 Deployment
+
+The app is live [here](https://projectx.yashpratapsingh.com)
+
+## 🧑‍💻 About Me
+
+Hi, I'm [Yash Pratap Singh](https://yashpratapsingh.com) – a Senior Full Stack Engineer with 5+ years of experience launching scalable apps for remote-first teams.
+
+- 🌍 Built for companies across Berlin, Brussels, and beyond
+- 💡 Specialized in React, Node, and product-led architecture
+- 🤖 Integrating Generative AI and LLM Engineering to improve UX and DX for startups
+
+## ⭐ Why This Project
+
+This application demonstrates:
+
+- Full-stack expertise with modern frameworks
+- Real-world auth and API patterns
+- Robust error handling and DX tooling
+- Using generative AI in for AI-driven full-stack app
+
+Built with ❤️ using Next.js
+
+---
+
+For questions or collaboration ideas, feel free to reach out or open an issue!
